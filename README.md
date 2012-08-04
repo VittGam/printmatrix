@@ -34,7 +34,7 @@ The table can be colored if colorprintf.h is included _before_ printmatrix.h:
              4 -> magenta
              5 -> cyan
 
-You can get the colorprintf.h header from [the colorprintf repo][https://github.com/VittGam/colorprintf].
+You can get the colorprintf.h header from [the colorprintf repo](https://github.com/VittGam/colorprintf).
 
 Please look at the example file to learn how to use printmatrix in various cases.
 
