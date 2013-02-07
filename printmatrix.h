@@ -1,5 +1,5 @@
 /****************************************************************************
- * printmatrix v2.0                                                         *
+ * printmatrix v2.1                                                         *
  * Copyright (C) 2012 VittGam.net. All Rights Reserved.                     *
  * https://github.com/VittGam/printmatrix                                   *
  ****************************************************************************
@@ -65,16 +65,19 @@ extern "C" {
  *          5 -> cyan
  */
 #ifndef COLORPRINTF_H_
-int printmatrix(void *matrix, int sizeofelm, char *formatstr, int rows, int cols, ...) {
+int printmatrix(void *matrix, int sizeofelm, const char *formatstr, int rows, int cols, ...) {
 #define colorprintf(color, ...) printf(__VA_ARGS__)
 #else
-int printmatrix(int argc, void *matrix, int sizeofelm, char *formatstr, int rows, int cols, ...) {
+int printmatrix(int argc, void *matrix, int sizeofelm, const char *formatstr, int rows, int cols, ...) {
 #define PRINTMATRIX_H_NUMARGS_VS_WORKAROUND(x) x
 #define PRINTMATRIX_H_NUMARGS(...) PRINTMATRIX_H_NUMARGS_VS_WORKAROUND(PRINTMATRIX_H_NUMARGS_IMPL(__VA_ARGS__,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0))
 #define PRINTMATRIX_H_NUMARGS_IMPL(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15,N,...) N
 #define printmatrix(...) printmatrix(PRINTMATRIX_H_NUMARGS(__VA_ARGS__), __VA_ARGS__)
 #endif
-	int i, j, k, l, len = 1, bordercolor = -1, elementcolor = -1;
+	int i, j, k, l, len = 1;
+#ifdef COLORPRINTF_H_
+	int bordercolor = -1, elementcolor = -1;
+#endif
 	if (rows <= 0 || cols <= 0) {
 		return 0;
 	}
@@ -90,7 +93,7 @@ int printmatrix(int argc, void *matrix, int sizeofelm, char *formatstr, int rows
 		va_end(ap);
 	}
 #endif
-#define CURRENT_MATRIX_ELEMENT *(char **)(matrix + (sizeofelm * ((i * cols) + j)))
+#define CURRENT_MATRIX_ELEMENT *((char **)matrix + (sizeofelm * ((i * cols) + j)))
 	for (i = 0; i < rows; i++) for (j = 0; j < cols; j++) {
 		int tmp = snprintf(NULL, 0, formatstr, CURRENT_MATRIX_ELEMENT);
 		if (tmp < 0) {
@@ -104,7 +107,7 @@ int printmatrix(int argc, void *matrix, int sizeofelm, char *formatstr, int rows
 		colorprintf(bordercolor, "+");
 	}
 	printf("\n");
-	char *tmpbuf = calloc(len + 1, sizeof(char));
+	char *tmpbuf = (char *) calloc(len + 1, sizeof(char));
 	if (tmpbuf == NULL) {
 		return -99;
 	}
