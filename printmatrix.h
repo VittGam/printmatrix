@@ -93,7 +93,7 @@ int printmatrix(int argc, void *matrix, int sizeofelm, const char *formatstr, in
 		va_end(ap);
 	}
 #endif
-#define CURRENT_MATRIX_ELEMENT *((char **)matrix + (sizeofelm * ((i * cols) + j)))
+#define CURRENT_MATRIX_ELEMENT *(char **)((char *)matrix + (sizeofelm * ((i * cols) + j)))
 	for (i = 0; i < rows; i++) for (j = 0; j < cols; j++) {
 		int tmp = snprintf(NULL, 0, formatstr, CURRENT_MATRIX_ELEMENT);
 		if (tmp < 0) {
