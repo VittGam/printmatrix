@@ -1,6 +1,6 @@
 /****************************************************************************
- * printmatrix v2.0 example                                                 *
- * Copyright (C) 2012 VittGam.net. All Rights Reserved.                     *
+ * printmatrix v2.1 example                                                 *
+ * Copyright (C) 2013 VittGam.net. All Rights Reserved.                     *
  * https://github.com/VittGam/printmatrix                                   *
  ****************************************************************************
  * Permission is hereby granted, free of charge, to any person obtaining a  *
