@@ -1,6 +1,6 @@
 /****************************************************************************
  * printmatrix v2.1                                                         *
- * Copyright (C) 2012 VittGam.net. All Rights Reserved.                     *
+ * Copyright (C) 2013 VittGam.net. All Rights Reserved.                     *
  * https://github.com/VittGam/printmatrix                                   *
  ****************************************************************************
  * Permission is hereby granted, free of charge, to any person obtaining a  *
